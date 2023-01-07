@@ -1,6 +1,6 @@
 <template>
   <div>
-    Meal List
+    Listas de refeições
   </div>
 </template>
 
