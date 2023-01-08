@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8 font-semibold">
+  <div class="p-8 font-semibold pb-0">
     <input
       v-model="keyword"
       @change="searchMeals"
@@ -25,10 +25,6 @@
       <router-link 
         to="/"
         target="_blank"
-        class="px-3 py-2 rounded bg-purple-500
-          border-2 hover:bg-purple-400 text-white
-          transition-colors border-purple-500
-        "
       >
         <img 
           :src="meal.strMealThumb" 
@@ -45,7 +41,7 @@
           {{ meal.strCategory }}
         </h3>
         <p class="mb-4">
-          Example description prepare...
+          Description...
         </p>
         <div class="flex items-center 
           justify-between text-center"
