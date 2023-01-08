@@ -1,12 +1,5 @@
 <template>
   <div class="flex p-8 flex-col">
-    
-    <input 
-      class="rounded-md border-2 
-        border-gray-200"
-      type="text"
-      placeholder="Search for meals" 
-    />
 
     <div 
       class="flex justify-center 
