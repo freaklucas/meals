@@ -22,30 +22,46 @@
       :key="meal.id"
       class="bg-white shadow-sm rounded-md"
     >
-      <img 
-        :src="meal.strMealThumb" 
-        :alt="meal.strMeal"
-        class="rounded-t-xl h-62 w-full object-cover"
-      />
-      <h2 class="px-3 py-2 font-semibold text-center">
-        {{meal.strMeal}}
-      </h2>
-      <h3 class="px-3 py-2 font-semibold text-center">
-        {{ meal.strCategory }}
-      </h3>
-      <div class="px-3 py-2 text-center">
-        <a 
-          :href="meal.strYoutube"
-          target="_blank"
+      <router-link 
+        to="/"
+        target="_blank"
+        class="px-3 py-2 rounded bg-purple-500
+          border-2 hover:bg-purple-400 text-white
+          transition-colors border-purple-500
+        "
+      >
+        <img 
+          :src="meal.strMealThumb" 
+          :alt="meal.strMeal"
+          class="rounded-t-xl h-62 w-full object-cover"
+        />
+      </router-link>
+
+      <div class="p-3">
+        <h2 class="p-3 py-2 font-bold text-center">
+          {{meal.strMeal}}
+        </h2>
+        <h3 class="p-3 py-2 font-semibold text-center">
+          {{ meal.strCategory }}
+        </h3>
+        <p class="mb-4">
+          Example description prepare...
+        </p>
+        <div class="flex items-center 
+          justify-between text-center"
         >
-          Youtube
-        </a>
-        <router-link 
-          to="/"
-          target="_blank"
-        >
-          View
-        </router-link>
+          <a 
+            :href="meal.strYoutube"
+            target="_blank"
+            class="px-3 py-2 rounded bg-red-500
+              border-2 hover:bg-red-400 text-white
+              transition-colors border-red-500
+            "
+          >
+            Youtube
+          </a>
+
+        </div>
       </div>
     </div>
   </div>
@@ -53,13 +69,21 @@
 </template>
 
 <script setup>
-import {ref, computed} from 'vue';
+import {ref, computed, onMounted} from 'vue';
+import { useRoute } from 'vue-router';
 import store from '../store'
 
+const route = useRoute();
 const keyword = ref('');
 const meals = computed(() => store.state.searchMeals);
 
 function searchMeals() {
   store.dispatch('searchMeals', keyword.value);
 }
+
+onMounted(() => {
+  keyword.value = route.params.name;
+  if (keyword.value) searchMeals();
+})
+
 </script>
