@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8">
+  <div class="p-8 font-semibold">
     <input
       v-model="keyword"
       @change="searchMeals"
@@ -24,15 +24,16 @@
     >
       <img 
         :src="meal.strMealThumb" 
-        :alt="meal.strMeal" 
+        :alt="meal.strMeal"
+        class="rounded-t-xl h-62 w-full object-cover"
       />
-      <h2 class="px-3 py-2">
+      <h2 class="px-3 py-2 font-semibold text-center">
         {{meal.strMeal}}
       </h2>
-      <h3 class="px-3 py-2">
+      <h3 class="px-3 py-2 font-semibold text-center">
         {{ meal.strCategory }}
       </h3>
-      <div class="px-3 py-2">
+      <div class="px-3 py-2 text-center">
         <a 
           :href="meal.strYoutube"
           target="_blank"
