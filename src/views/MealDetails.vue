@@ -15,7 +15,7 @@
      <div class="font-bold">
       Area: {{ meal.strArea }}
      </div>
-     <div class="font-bold">
+     <div class="font-bold flex justify-center">
       Tags: {{ meal.strTags }}
      </div>
     </div>
