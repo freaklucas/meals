@@ -23,8 +23,8 @@
       class="bg-white shadow-sm rounded-md"
     >
       <router-link 
-        to="/"
-        target="_blank"
+        :to="{name: 'mealDetails', 
+          params:{id: meal.idMeal}}"
       >
         <img 
           :src="meal.strMealThumb" 
