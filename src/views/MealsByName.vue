@@ -46,16 +46,10 @@
         <div class="flex items-center 
           justify-between text-center"
         >
-          <a 
-            :href="meal.strYoutube"
-            target="_blank"
-            class="px-3 py-2 rounded bg-red-500
-              border-2 hover:bg-red-400 text-white
-              transition-colors border-red-500
-            "
-          >
-            Youtube
-          </a>
+
+        <YoutubeButton :href="meal.strYoutube">
+          Youtube
+        </YoutubeButton>
 
         </div>
       </div>
@@ -68,6 +62,7 @@
 import {ref, computed, onMounted} from 'vue';
 import { useRoute } from 'vue-router';
 import store from '../store'
+import YoutubeButton from '../components/YoutubeButton.vue';
 
 const route = useRoute();
 const keyword = ref('');
