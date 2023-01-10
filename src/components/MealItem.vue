@@ -37,6 +37,9 @@
 </template>
 
 <script setup>
+
+import YoutubeButton from './YoutubeButton.vue';
+
 const { meal } = defineProps({
   meal: {
     required: true,

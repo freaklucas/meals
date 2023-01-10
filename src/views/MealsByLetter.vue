@@ -31,7 +31,7 @@
 
 <script setup>
 import { computed } from '@vue/reactivity';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import store from '../store';
 
@@ -43,9 +43,13 @@ const letters = 'ABCDEFGHIJQKLMNOPQRSTUVWXYZ'
 
 const meals = computed(() => store.state.mealsByLetter);
 
+watch(route, () => {
+  store.dispatch('searchMealsByLetter', route.params.letter);
+
+})
+
 onMounted(() => {
   store.dispatch('searchMealsByLetter', route.params.letter);
-  console.log(route.params.letter)
 });
 
 </script>
