@@ -5,7 +5,7 @@
       v-for="ingredient of ingredients"
       :to="{ 
         name: 'byIngredient', 
-        params: {ingredient: ingredient.idIngredient},
+        params: {ingredient: ingredient.strIngredient},
       }"
       :key="ingredient.id"
       class="block bg-white roundend 

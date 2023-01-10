@@ -9,37 +9,27 @@
       placeholder="Search for meals" 
     />
   </div>
-  
-  <div 
-    class="
-      grid grid-cols-1 
-      md:grid-cols-3 gap-5
-      p-8
-    "
-  >
-    <MealItem 
-      v-for="meal of meals" 
-      :key="meal.id" 
-      :meal="meal"  
-    />
-  </div>
-
+  <Meals
+     :meals="meals"
+  />
 </template>
 
 <script setup>
 import {ref, computed, onMounted} from 'vue';
 import { useRoute } from 'vue-router';
 import store from '../store'
-import YoutubeButton from '../components/YoutubeButton.vue';
-import MealItem from '../components/MealItem.vue';
-
+import Meals from '../components/Meals.vue';
 
 const route = useRoute();
 const keyword = ref('');
 const meals = computed(() => store.state.searchMeals);
 
 function searchMeals() {
-  store.dispatch('searchMeals', keyword.value);
+  if(keyword.value) {
+    store.dispatch('searchMeals', keyword.value);
+  } else {
+    store.commit('setSearchMeals', []);
+  }
 }
 
 onMounted(() => {
