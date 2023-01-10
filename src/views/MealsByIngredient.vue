@@ -1,32 +1,23 @@
 <template>
-  <div class="p-8">
-    <h1 class="text-4xl font-sans mb-4">Ingredients</h1>
-    <div 
-      v-for="ingredient of ingredients"
-      :key="ingredient.id"
-      class="bg-white roundend p-3 mb-3 shadow"
-    >
-      <h3 class="font-mono text-2xl mb-2">
-        {{ ingredient.strIngredient }}
-      </h3>
-      <p class="font-serif text-md">
-        {{ ingredient.strDescription }}
-      </p>
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 p-8">
+    <MealItem 
+      v-for="meal of meals" 
+      :key="meal.idMeal"
+      :meal="meal" 
+    />
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "@vue/runtime-core";
-import axiosClient from "../axiosClient";
+import { computed, onMounted } from "@vue/runtime-core";
+import { useRoute } from "vue-router";
+import store from '../store'
 
-const ingredients = ref([]);
-
+const route = useRoute();
+const meals = computed(() => store.state.mealsByIngredients);
 onMounted(() => {
-  axiosClient.get('list.php?i=list')
-    .then(({ data}) => {
-      ingredients.value = data.meals;
-    });
+  store.dispatch('searchMealsByIngredient', 
+    route.params.ing);
 });
 
 </script>
